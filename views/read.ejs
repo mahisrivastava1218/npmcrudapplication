@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <!-- <link rel="stylesheet" href="/"/> -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+    </style>
+</head>
+<body>
+    <div class="bg-dark bg-gradient text-white" style="width: 100%; height: 100vh;">
+        <a class="mx-4 text-primary" href="/">Back to Home</a>
+        <h4 class="mx-4 mb-3">Create User Dashboard</h4> 
+        <div class="users d-flex flex-wrap" style="width: 70%; height: 90%;">
+            <% if (users && users.length > 0) { %> <!-- Check if 'users' is defined and not empty -->
+                <% users.forEach(function(user) { %>
+                    <div class="user d-flex flex-wrap rounded bg-secondary mx-4 mb-4" style="width: 18%; height: 45%;">
+                        <!-- <div class="mt-2 bg-dark rounded" style="width: 87%; height: 63%;"></div> -->
+                         <div class="overflow-hidden rounded w-100" style="height: 60%;">
+                            <img class="w-100 h-100 object-fit-cover" src="<%= user.image %>" alt=""/>
+                         </div>
+                        <div class="d-flex flex-wrap mx-1 mt-0">
+                            <div class="d-flex flex-column">
+                            <h5 class="m-0"><%= user.name %></h5>
+                            <h6 class="text-dark fs-6 m-0 fw-lighter"><%= user.email %></h6>
+                            </div>
+                            <div class="d-flex flex-wrap mb-1 text-white mt-4">
+                                <a class="text-white" href="/edit/<%= user._id %>">Edit user</a>
+                                <a class="mx-2 text-danger" href="/delete/<%= user._id %>">Delete User</a>
+                            </div>
+                        </div>
+                    </div>
+                <% }) %>
+            <% } else { %>
+                <p>No users found.</p> <!-- Fallback if 'users' is undefined or empty -->
+            <% } %>
+        </div>
+    </div>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+</body>
+
+</html>
